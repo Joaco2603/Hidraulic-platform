@@ -3,22 +3,38 @@ extends RigidBody2D
 @export var fuerza_empuje = 400
 @export var limite_velocidad_muerte = 500 # Si choca a más de esta velocidad, muere
 @export var altura_suelo = 600 # Referencia para la energía potencial (Y del suelo)
+@export var habilitar_derrota_por_caida: bool = true
+@export var altura_limite_caida_caja: float = 760.0
+@export var ruta_caja: NodePath = NodePath("../../box")
 
 @export var label_ec : Label
 @export var label_ep : Label
 @export var label_vel : Label
+@export var label_fuerza : Label
+@export var label_caidas : Label
 
 var esta_presionando = false
 var gravedad_valor = ProjectSettings.get_setting("physics/2d/default_gravity")
+var caja: RigidBody2D
+var contador_caidas: int = 0
+var reiniciando: bool = false
+
+const META_CAIDAS := "contador_caidas_box"
 
 func _ready():
 	lock_rotation = true
+	caja = get_node_or_null(ruta_caja) as RigidBody2D
+	contador_caidas = int(get_tree().get_meta(META_CAIDAS, 0))
+
 	# Conectamos la señal de colisión por código para asegurar que funcione
 	body_entered.connect(_on_body_entered)
 
 
 
 func _physics_process(delta: float) -> void:
+	if reiniciando:
+		return
+
 	# 1. Lógica de Empuje (Jetpack)
 	if esta_presionando:
 		linear_velocity.y = -fuerza_empuje
@@ -47,6 +63,15 @@ func _physics_process(delta: float) -> void:
 	if label_vel:
 		label_vel.text = "Velocidad Y: %.2f" % linear_velocity.y
 
+	if label_fuerza:
+		label_fuerza.text = "Fuerza: %.0f N" % fuerza_empuje
+
+	if label_caidas:
+		label_caidas.text = "Caidas de caja: %d" % contador_caidas
+
+	if habilitar_derrota_por_caida and caja and caja.global_position.y > altura_limite_caida_caja:
+		perder_por_caida_de_caja()
+
 # --- DETECCIÓN DE MUERTE ---
 
 func _on_body_entered(body: Node) -> void:
@@ -55,10 +80,19 @@ func _on_body_entered(body: Node) -> void:
 		morir()
 
 func morir():
+	reiniciando = true
 	print("¡HAS MUERTO POR IMPACTO A ALTA VELOCIDAD!")
-	# Aquí podrías reiniciar la escena
-	# get_tree().reload_current_scene()
-	queue_free() # El objeto desaparece
+	get_tree().reload_current_scene()
+
+func perder_por_caida_de_caja() -> void:
+	if reiniciando:
+		return
+
+	reiniciando = true
+	contador_caidas += 1
+	get_tree().set_meta(META_CAIDAS, contador_caidas)
+	print("La caja se cayó de la plataforma. Reiniciando nivel...")
+	get_tree().reload_current_scene()
 
 # --- SEÑALES DEL BOTÓN ---
 

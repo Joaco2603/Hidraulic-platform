@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cedrl0wcmbs3e" path="res://assets/2 Background/Background.png" id="1_4x2cb"]
 [ext_resource type="TileSet" uid="uid://c74mr2i7gy3hs" path="res://title_sets/level_1.tres" id="2_3o1up"]
 [ext_resource type="Texture2D" uid="uid://m5hpyymld8rr" path="res://assets/3 Objects/Fence1.png" id="3_6nsur"]
-[ext_resource type="Script" uid="uid://bur8ixq7miu52" path="res://scenes/elevator.gd" id="3_dnnxk"]
+[ext_resource type="Script" uid="uid://bur8ixq7miu52" path="res://scripts/elevator.gd" id="3_dnnxk"]
 [ext_resource type="Texture2D" uid="uid://djqaehy64vkew" path="res://assets/4 Animated objects/Chest.png" id="3_h3ytn"]
 [ext_resource type="Texture2D" uid="uid://b3njopoj06ihs" path="res://assets/4 Animated objects/Entry.png" id="4_aypt8"]
 [ext_resource type="Texture2D" uid="uid://bfknwmjd1vf28" path="res://assets/3 Objects/Fence3.png" id="4_si3au"]
@@ -16,9 +16,18 @@
 [ext_resource type="Texture2D" uid="uid://lfcvefscpcuf" path="res://assets/character/sprite-64x64px.png" id="10_4bk73"]
 [ext_resource type="Texture2D" uid="uid://drcalekwr4lwi" path="res://assets/3 Objects/Pointer2.png" id="11_h0okx"]
 [ext_resource type="Texture2D" uid="uid://brfkxox3anx6q" path="res://assets/4 Animated objects/Platform.png" id="14_si3au"]
+[ext_resource type="Script" uid="uid://crvf5jaroxam7" path="res://scripts/platform_spawn.gd" id="17_ttsa5"]
+[ext_resource type="Script" uid="uid://dlwwg76mabqpo" path="res://scripts/question_spawn.gd" id="18_h3drv"]
+[ext_resource type="PackedScene" uid="uid://dt868stxcw46q" path="res://scenes/question.tscn" id="19_h3drv"]
+[ext_resource type="PackedScene" uid="uid://dv37e05752m2j" path="res://assets/prefabs/platform.tscn" id="20_1gi7x"]
+[ext_resource type="PackedScene" uid="uid://c7huhgdkh4exh" path="res://scenes/questions2.tscn" id="21_v6cp2"]
+[ext_resource type="PackedScene" uid="uid://ceoxnwg8g5teh" path="res://scenes/questions3.tscn" id="22_2nqso"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d8idr"]
 size = Vector2(30.5, 14.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1gi7x"]
+size = Vector2(29.321594, 20.912964)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_si3au"]
 size = Vector2(44.05197, 109.49408)
@@ -30,8 +39,8 @@ size = Vector2(44.05197, 109.49408)
 [node name="BackgroundCounter" type="Sprite2D" parent="Background" unique_id=624161636]
 modulate = Color(0, 0, 0, 0.60784316)
 z_index = 1
-position = Vector2(431, 153.5)
-scale = Vector2(0.34374988, 0.48456788)
+position = Vector2(431, 194.99998)
+scale = Vector2(0.34374988, 0.74074066)
 texture = ExtResource("1_4x2cb")
 
 [node name="BackgroundDispensador" type="Sprite2D" parent="Background" unique_id=1502245955]
@@ -73,12 +82,14 @@ tile_map_data = PackedByteArray("AABFAAAAAgAAAAAAAABGAAAAAgAAAAAAAABBAAAAAgAAAAA
 tile_set = ExtResource("2_3o1up")
 use_kinematic_bodies = true
 
-[node name="RigidBody2D" type="RigidBody2D" parent="Borders" unique_id=1255503325 node_paths=PackedStringArray("label_ec", "label_ep", "label_vel")]
+[node name="RigidBody2D" type="RigidBody2D" parent="Borders" unique_id=1255503325 node_paths=PackedStringArray("label_ec", "label_ep", "label_vel", "label_fuerza", "label_caidas")]
 position = Vector2(1010, 559)
 script = ExtResource("3_dnnxk")
 label_ec = NodePath("../../CanvasLayer/EnergiaCinetica")
 label_ep = NodePath("../../CanvasLayer/EnergiaPotencial")
 label_vel = NodePath("../../CanvasLayer/Velocidad")
+label_fuerza = NodePath("../../CanvasLayer/Fuerza")
+label_caidas = NodePath("../../CanvasLayer/CaidasCaja")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/RigidBody2D" unique_id=1232483719]
 position = Vector2(-2, -66)
@@ -122,10 +133,18 @@ position = Vector2(1.2433419, -8.172448)
 scale = Vector2(0.3381642, 0.29383883)
 texture = ExtResource("7_4bk73")
 
-[node name="BoxObject" type="Sprite2D" parent="." unique_id=1736053871]
-position = Vector2(1471, 692)
-scale = Vector2(1.5859402, 1.6367208)
+[node name="box" type="RigidBody2D" parent="." unique_id=2010010326]
+position = Vector2(1008, 469)
+scale = Vector2(0.8867191, 1.0996094)
+
+[node name="BoxObject" type="Sprite2D" parent="box" unique_id=1736053871]
+scale = Vector2(0.9999999, 0.9999998)
 texture = ExtResource("9_h0okx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="box" unique_id=626825974]
+position = Vector2(0, 4.090576)
+scale = Vector2(0.99999964, 0.99999976)
+shape = SubResource("RectangleShape2D_1gi7x")
 
 [node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=979885947]
 position = Vector2(561, 542.00006)
@@ -142,7 +161,7 @@ shape = SubResource("RectangleShape2D_si3au")
 
 [node name="Pointer2" type="Sprite2D" parent="." unique_id=2051158216]
 z_index = 1
-position = Vector2(887.99994, 57)
+position = Vector2(887.99994, 74)
 scale = Vector2(2.28125, 2.1875)
 texture = ExtResource("11_h0okx")
 
@@ -207,12 +226,59 @@ anchor_left = -4.513158
 anchor_top = -2.3061225
 anchor_right = -4.513158
 anchor_bottom = -2.3061225
-offset_left = 5538.1577
-offset_top = 1695.3674
-offset_right = 5614.1577
-offset_bottom = 1744.3674
+offset_left = 5539.1577
+offset_top = 1691.3674
+offset_right = 5619.1577
+offset_bottom = 1740.3674
 text = "Velocidad:"
 metadata/_edit_use_anchors_ = true
+
+[node name="Fuerza" type="Label" parent="CanvasLayer" unique_id=1594094347]
+z_index = 2
+offset_left = 341.0
+offset_top = 233.0
+offset_right = 521.0
+offset_bottom = 263.0
+text = "Fuerza:"
+metadata/_edit_use_anchors_ = true
+
+[node name="CaidasCaja" type="Label" parent="CanvasLayer" unique_id=1989718860]
+z_index = 2
+offset_left = 340.0
+offset_top = 273.0
+offset_right = 560.0
+offset_bottom = 303.0
+text = "Caidas de caja: 0"
+metadata/_edit_use_anchors_ = true
+
+[node name="manager" type="Node2D" parent="." unique_id=861021763]
+
+[node name="plataform_spawn" type="Node2D" parent="manager" unique_id=1087620643]
+script = ExtResource("17_ttsa5")
+
+[node name="question_spawn" type="Node2D" parent="manager" unique_id=1765067304]
+script = ExtResource("18_h3drv")
+escena_siguiente = ExtResource("19_h3drv")
+escenas_quiz = Array[PackedScene]([ExtResource("19_h3drv"), ExtResource("21_v6cp2"), ExtResource("22_2nqso")])
+escena_a_spawnear = ExtResource("19_h3drv")
+prefabs_plataformas = Array[PackedScene]([ExtResource("20_1gi7x")])
+puntos_spawn_prefabs = Array[NodePath]([NodePath("../../spawner")])
+puntos_spawn_retorno = Array[NodePath]([NodePath("../../spawn_return_1"), NodePath("../../spawn_return_2"), NodePath("../../spawn_return_3")])
+
+[node name="spawner" type="Node2D" parent="." unique_id=1815010442]
+position = Vector2(888, 92)
+
+[node name="spawn_return_1" type="Node2D" parent="." unique_id=973194680]
+position = Vector2(820, 220)
+
+[node name="spawn_return_2" type="Node2D" parent="." unique_id=1561277165]
+position = Vector2(940, 360)
+
+[node name="spawn_return_3" type="Node2D" parent="." unique_id=817352360]
+position = Vector2(870, 510)
+
+[node name="platform" parent="." unique_id=1591740322 instance=ExtResource("20_1gi7x")]
+position = Vector2(888, 92)
 
 [connection signal="button_down" from="Up/TextureButton" to="Borders/RigidBody2D" method="_on_up_button_down"]
 [connection signal="button_up" from="Up/TextureButton" to="Borders/RigidBody2D" method="_on_up_button_up"]

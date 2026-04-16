@@ -1,0 +1,105 @@
+[gd_scene format=3 uid="uid://ceoxnwg8g5teh"]
+
+[ext_resource type="Texture2D" uid="uid://cedrl0wcmbs3e" path="res://assets/2 Background/Background.png" id="1_j0tmc"]
+[ext_resource type="Script" path="res://scripts/quiz_question.gd" id="2_quiz"]
+
+[node name="Question" type="Node2D" unique_id=721749117]
+script = ExtResource("2_quiz")
+opcion_correcta = "B"
+
+[node name="Background" type="Node" parent="." unique_id=356528897]
+
+[node name="BackgroundCounter" type="Sprite2D" parent="Background" unique_id=2116776503]
+modulate = Color(0, 0, 0, 0.60784316)
+self_modulate = Color(1, 1, 1, 0.39215687)
+z_index = 1
+position = Vector2(576, 309)
+scale = Vector2(1.732639, 1.654321)
+texture = ExtResource("1_j0tmc")
+
+[node name="Background" type="Sprite2D" parent="Background" unique_id=1071819509]
+modulate = Color(0.99998325, 0.1997433, 0.34112516, 1)
+z_index = -1
+position = Vector2(578.50006, 322.75)
+scale = Vector2(2.0017362, 1.9953704)
+texture = ExtResource("1_j0tmc")
+
+[node name="QuestionsBackground4" type="Sprite2D" parent="Background" unique_id=81401136]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(1.0845727, 1.0845727, 1.0845727, 1)
+z_index = 1
+position = Vector2(783.6235, 473.43732)
+scale = Vector2(0.43966484, 0.3926105)
+texture = ExtResource("1_j0tmc")
+
+[node name="QuestionsBackground3" type="Sprite2D" parent="Background" unique_id=847984642]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(1.0845727, 1.0845727, 1.0845727, 1)
+z_index = 1
+position = Vector2(389, 463.99997)
+scale = Vector2(0.4735868, 0.4237511)
+texture = ExtResource("1_j0tmc")
+
+[node name="QuestionsBackground2" type="Sprite2D" parent="Background" unique_id=1135975781]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(1.0845727, 1.0845727, 1.0845727, 1)
+z_index = 1
+position = Vector2(786.6142, 301.5201)
+scale = Vector2(0.44664168, 0.46000075)
+texture = ExtResource("1_j0tmc")
+
+[node name="QuestionsBackground" type="Sprite2D" parent="Background" unique_id=436397563]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(1.0845727, 1.0845727, 1.0845727, 1)
+z_index = 1
+position = Vector2(395, 297)
+scale = Vector2(0.4796757, 0.423392)
+texture = ExtResource("1_j0tmc")
+
+[node name="Pregunta" type="Label" parent="Background" unique_id=347355344]
+z_index = 1
+offset_left = 98.0
+offset_top = 118.0
+offset_right = 1052.0
+offset_bottom = 170.0
+text = "En un sistema ideal con una polea movil (dos tramos de cuerda sosteniendo la carga), ¿que fuerza minima se necesita para levantar un peso P?"
+
+[node name="response1" type="Label" parent="Background" unique_id=381879931]
+z_index = 1
+offset_left = 262.0
+offset_top = 236.0
+offset_right = 518.0
+offset_bottom = 363.0
+text = "F = 2P"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="response2" type="Label" parent="Background" unique_id=952487939]
+z_index = 1
+offset_left = 264.0
+offset_top = 402.0
+offset_right = 520.0
+offset_bottom = 529.0
+text = "F = P/2"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="response3" type="Label" parent="Background" unique_id=1032832161]
+z_index = 1
+offset_left = 655.0
+offset_top = 404.0
+offset_right = 911.0
+offset_bottom = 531.0
+text = "F = P"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="response4" type="Label" parent="Background" unique_id=343654520]
+z_index = 1
+offset_left = 659.0
+offset_top = 230.0
+offset_right = 915.0
+offset_bottom = 357.0
+text = "F = P/4"
+horizontal_alignment = 1
+autowrap_mode = 2

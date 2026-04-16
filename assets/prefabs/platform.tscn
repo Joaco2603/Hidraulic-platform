@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://dv37e05752m2j"]
+
+[ext_resource type="Texture2D" uid="uid://bveh360g6vb4t" path="res://assets/1 Tiles/IndustrialTile_36.png" id="1_qo1m8"]
+[ext_resource type="Script" uid="uid://crvf5jaroxam7" path="res://scripts/platform_spawn.gd" id="2_8f2m2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_platform"]
+size = Vector2(128, 16)
+
+[node name="platform" type="Node2D" unique_id=1591740322]
+script = ExtResource("2_8f2m2")
+velocidad = 120.0
+distancia = 220.0
+mover_padre_en_lugar_de_este_nodo = false
+
+[node name="IndustrialTile36" type="Sprite2D" parent="." unique_id=1679362475]
+position = Vector2(0, 0)
+scale = Vector2(1.0625, 1)
+texture = ExtResource("1_qo1m8")
+
+[node name="IndustrialTile36" type="Sprite2D" parent="IndustrialTile36" unique_id=1569437737]
+position = Vector2(-32, 0)
+texture = ExtResource("1_qo1m8")
+
+[node name="IndustrialTile36" type="Sprite2D" parent="IndustrialTile36/IndustrialTile36" unique_id=528423358]
+position = Vector2(-32, 0)
+texture = ExtResource("1_qo1m8")
+
+[node name="IndustrialTile36" type="Sprite2D" parent="IndustrialTile36/IndustrialTile36/IndustrialTile36" unique_id=1877702422]
+position = Vector2(-32, 0)
+texture = ExtResource("1_qo1m8")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-48, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_platform")

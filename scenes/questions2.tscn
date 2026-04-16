@@ -1,0 +1,105 @@
+[gd_scene format=3 uid="uid://c7huhgdkh4exh"]
+
+[ext_resource type="Texture2D" uid="uid://cedrl0wcmbs3e" path="res://assets/2 Background/Background.png" id="1_jk58q"]
+[ext_resource type="Script" path="res://scripts/quiz_question.gd" id="2_quiz"]
+
+[node name="Question" type="Node2D" unique_id=721749117]
+script = ExtResource("2_quiz")
+opcion_correcta = "C"
+
+[node name="Background" type="Node" parent="." unique_id=1179639457]
+
+[node name="BackgroundCounter" type="Sprite2D" parent="Background" unique_id=803482848]
+modulate = Color(0, 0, 0, 0.60784316)
+self_modulate = Color(1, 1, 1, 0.39215687)
+z_index = 1
+position = Vector2(576, 309)
+scale = Vector2(1.732639, 1.654321)
+texture = ExtResource("1_jk58q")
+
+[node name="Background" type="Sprite2D" parent="Background" unique_id=532826840]
+modulate = Color(0.99998325, 0.1997433, 0.34112516, 1)
+z_index = -1
+position = Vector2(578.50006, 322.75)
+scale = Vector2(2.0017362, 1.9953704)
+texture = ExtResource("1_jk58q")
+
+[node name="QuestionsBackground4" type="Sprite2D" parent="Background" unique_id=152699422]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(1.0845727, 1.0845727, 1.0845727, 1)
+z_index = 1
+position = Vector2(783.6235, 473.43732)
+scale = Vector2(0.43966484, 0.3926105)
+texture = ExtResource("1_jk58q")
+
+[node name="QuestionsBackground3" type="Sprite2D" parent="Background" unique_id=270598571]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(1.0845727, 1.0845727, 1.0845727, 1)
+z_index = 1
+position = Vector2(389, 463.99997)
+scale = Vector2(0.4735868, 0.4237511)
+texture = ExtResource("1_jk58q")
+
+[node name="QuestionsBackground2" type="Sprite2D" parent="Background" unique_id=1941839282]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(1.0845727, 1.0845727, 1.0845727, 1)
+z_index = 1
+position = Vector2(786.6142, 301.5201)
+scale = Vector2(0.44664168, 0.46000075)
+texture = ExtResource("1_jk58q")
+
+[node name="QuestionsBackground" type="Sprite2D" parent="Background" unique_id=1707884741]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(1.0845727, 1.0845727, 1.0845727, 1)
+z_index = 1
+position = Vector2(395, 297)
+scale = Vector2(0.4796757, 0.423392)
+texture = ExtResource("1_jk58q")
+
+[node name="Pregunta" type="Label" parent="Background" unique_id=443004116]
+z_index = 1
+offset_left = 98.0
+offset_top = 118.0
+offset_right = 1052.0
+offset_bottom = 170.0
+text = "Si dos maquinas realizan el mismo trabajo, pero una tarda la mitad de tiempo, ¿que ocurre con su potencia?"
+
+[node name="response1" type="Label" parent="Background" unique_id=537153343]
+z_index = 1
+offset_left = 262.0
+offset_top = 236.0
+offset_right = 518.0
+offset_bottom = 363.0
+text = "Es la mitad"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="response2" type="Label" parent="Background" unique_id=1428006194]
+z_index = 1
+offset_left = 264.0
+offset_top = 402.0
+offset_right = 520.0
+offset_bottom = 529.0
+text = "Es la misma"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="response3" type="Label" parent="Background" unique_id=846389433]
+z_index = 1
+offset_left = 655.0
+offset_top = 404.0
+offset_right = 911.0
+offset_bottom = 531.0
+text = "Se duplica"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="response4" type="Label" parent="Background" unique_id=739736695]
+z_index = 1
+offset_left = 659.0
+offset_top = 230.0
+offset_right = 915.0
+offset_bottom = 357.0
+text = "Se cuadruplica"
+horizontal_alignment = 1
+autowrap_mode = 2
