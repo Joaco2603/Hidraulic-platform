@@ -1,0 +1,21 @@
+# Godot 4+ generated files
+.godot/
+.import/
+
+# Export and build artifacts
+export_presets.cfg
+export.cfg
+*.pck
+*.zip
+*.exe
+*.x86_64
+*.apk
+*.aab
+
+# C# / Mono caches, if used later
+.mono/
+.data/
+
+# Platform noise
+.DS_Store
+Thumbs.db
